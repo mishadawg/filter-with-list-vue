@@ -1,6 +1,6 @@
 <template>
   <div class="list-users">
-    <p>Counts items to show: {{ itemsToShow }}</p>
+    <p class="list-users-count">Counts items to show: {{ itemsToShow }}</p>
     <div class="list-users-container">
       <template v-if="users">
         <PostCard
@@ -51,6 +51,11 @@ export default {
     display: flex;
     flex-wrap: wrap;
     gap: 16px 25px;
+    margin-bottom: 14px;
+  }
+  &-count {
+    text-align: left;
+    margin-bottom: 14px;
   }
 }
 </style>
