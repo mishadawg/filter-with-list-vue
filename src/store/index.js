@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
 
-const dataUrl = "https://jsonplaceholder.typicode.com/users";
+const dataUrl = "https://jsonplaceholder.typicode.com/posts";
 
 export default createStore({
   state() {

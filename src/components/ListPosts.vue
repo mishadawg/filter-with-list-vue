@@ -2,24 +2,24 @@
   <div class="list-users">
     <div class="list-users-container">
       <template v-if="users">
-        <UserCard v-for="(user, index) in users" :key="index" :user="user" />
+        <PostCard v-for="(user, index) in users" :key="index" :user="user" />
       </template>
       <template v-else> Нет данных. </template>
     </div>
   </div>
 </template>
 <script>
-import UserCard from "@/components/UserCard";
+import PostCard from "@/components/PostCard";
 
 export default {
-  name: "ListUsers",
+  name: "ListPosts",
   props: {
     users: {
       type: Array,
     },
   },
   components: {
-    UserCard,
+    PostCard,
   },
 };
 </script>
