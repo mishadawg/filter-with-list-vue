@@ -15,6 +15,7 @@ export default createStore({
         { value: "movies", name: "Movies" },
         { value: "games", name: "Games" },
       ],
+      _filter: null,
     };
   },
   mutations: {
@@ -31,6 +32,10 @@ export default createStore({
     showMoreItems(state) {
       state._itemsToShow += 3;
     },
+    goFilter(state, payload) {
+      state._filter = payload;
+      console.log(state._filter);
+    },
   },
   actions: {
     getDataFromServer(context) {
@@ -44,5 +49,6 @@ export default createStore({
     data: (state) => state._data,
     categories: (state) => state._categories,
     itemsToShow: (state) => state._itemsToShow,
+    filter: (state) => state._filter,
   },
 });

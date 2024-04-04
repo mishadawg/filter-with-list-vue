@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     handlerFilter() {
-      console.log("change");
+      this.$store.commit("goFilter", this.filter);
     },
   },
   computed: {
