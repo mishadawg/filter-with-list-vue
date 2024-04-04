@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <h1>list items</h1>
-    <div>
-      <UserCard />
+  <div class="list-users">
+    <div class="list-users-container">
+      <template v-if="users">
+        <UserCard v-for="(user, index) in users" :key="index" :user="user" />
+      </template>
+      <template v-else> Нет данных. </template>
     </div>
   </div>
 </template>
@@ -11,8 +13,22 @@ import UserCard from "@/components/UserCard";
 
 export default {
   name: "ListUsers",
+  props: {
+    users: {
+      type: Array,
+    },
+  },
   components: {
     UserCard,
   },
 };
 </script>
+<style lang="scss" scoped>
+.list-users {
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 25px;
+  }
+}
+</style>

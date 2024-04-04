@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div class="container">
     <Filter />
-    <ListUsers />
+    <ListUsers :users="this.$store.getters.data" />
     <ShowMoreTrigger />
   </div>
 </template>
@@ -17,6 +17,9 @@ export default {
     Filter,
     ListUsers,
     ShowMoreTrigger,
+  },
+  mounted: function () {
+    this.$store.commit("getData");
   },
 };
 </script>
