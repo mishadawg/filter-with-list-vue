@@ -1,15 +1,30 @@
 <template>
   <div class="filter">
     <div class="filter-input">
-      <label for="title">Title:</label>
-      <input type="text" name="title" id="title" v-model="title" />
+      <label for="title">Title: {{ filter.title }}</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        v-model="filter.title"
+        @change="handlerFilter"
+      />
     </div>
     <div class="filter-input">
-      <label for="category">Category:</label>
-      <select name="category" id="category" v-model="category">
-        <option value="active">All</option>
-        <option value="active">Sport</option>
-        <option value="blocked">Movies</option>
+      <label for="category">Category: {{ filter.category }}</label>
+      <select
+        name="category"
+        id="category"
+        v-model="filter.category"
+        @change="handlerFilter"
+      >
+        <option
+          v-for="(categoryItem, index) in categories"
+          :key="index"
+          :value="categoryItem.value"
+        >
+          {{ categoryItem.name }}
+        </option>
       </select>
     </div>
   </div>
@@ -19,9 +34,21 @@ export default {
   name: "Filter",
   data() {
     return {
-      title: "",
-      category: null,
+      filter: {
+        title: "",
+        category: null,
+      },
     };
+  },
+  methods: {
+    handlerFilter() {
+      console.log("change");
+    },
+  },
+  computed: {
+    categories: function () {
+      return [{ value: "all", name: "All" }, ...this.$store.getters.categories];
+    },
   },
 };
 </script>

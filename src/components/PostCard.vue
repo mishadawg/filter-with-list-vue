@@ -1,5 +1,6 @@
 <template>
   <div class="user-card">
+    <p>{{ user.category.name }}</p>
     <p class="user-card-title">{{ user.title }}</p>
     <p class="user-card-text">{{ user.body }}</p>
   </div>

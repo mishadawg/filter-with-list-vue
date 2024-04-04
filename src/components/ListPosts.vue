@@ -1,6 +1,9 @@
 <template>
   <div class="list-users">
-    <p class="list-users-count">Counts items to show: {{ itemsToShow }}</p>
+    <p class="list-users-count">
+      Counts items to show:
+      {{ itemsToShow < users?.length ? itemsToShow : users?.length }}
+    </p>
     <div class="list-users-container">
       <template v-if="users">
         <PostCard
@@ -29,18 +32,6 @@ export default {
   computed: {
     itemsToShow: function () {
       return this.$store.getters.itemsToShow;
-    },
-  },
-  watch: {
-    itemsToShow: {
-      immediate: true,
-      handler(newVal) {
-        if (newVal) {
-          this.$nextTick(() => {
-            console.log(newVal + "update counter of visible items");
-          });
-        }
-      },
     },
   },
 };

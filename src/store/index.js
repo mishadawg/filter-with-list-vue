@@ -10,24 +10,39 @@ export default createStore({
       _data: null,
       _selected: null,
       _itemsToShow: 6,
+      _categories: [
+        { value: "sport", name: "Sport" },
+        { value: "movies", name: "Movies" },
+        { value: "games", name: "Games" },
+      ],
     };
   },
   mutations: {
-    getData(state) {
-      axios.get(dataUrl).then((response) => {
-        state._data = response.data;
-        state._loaded = true;
+    mutateData(state, payload) {
+      state._data = payload.map((item) => {
+        item.category =
+          state._categories[
+            Math.floor(Math.random() * state._categories.length)
+          ];
+        return item;
       });
+      state._loaded = true;
     },
     showMoreItems(state) {
       state._itemsToShow += 3;
-      console.log(state._itemsToShow);
+    },
+  },
+  actions: {
+    getDataFromServer(context) {
+      axios.get(dataUrl).then((response) => {
+        context.commit("mutateData", response.data);
+      });
     },
   },
   getters: {
     loaded: (state) => state._loaded,
     data: (state) => state._data,
-    selected: (state) => state._selected,
+    categories: (state) => state._categories,
     itemsToShow: (state) => state._itemsToShow,
   },
 });

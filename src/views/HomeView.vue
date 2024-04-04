@@ -19,7 +19,7 @@ export default {
     ShowMoreTrigger,
   },
   mounted: function () {
-    this.$store.commit("getData");
+    this.$store.dispatch("getDataFromServer");
   },
 };
 </script>
