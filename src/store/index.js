@@ -9,6 +9,7 @@ export default createStore({
       _loaded: false,
       _data: null,
       _selected: null,
+      _itemsToShow: 6,
     };
   },
   mutations: {
@@ -18,10 +19,15 @@ export default createStore({
         state._loaded = true;
       });
     },
+    showMoreItems(state) {
+      state._itemsToShow += 3;
+      console.log(state._itemsToShow);
+    },
   },
   getters: {
     loaded: (state) => state._loaded,
     data: (state) => state._data,
     selected: (state) => state._selected,
+    itemsToShow: (state) => state._itemsToShow,
   },
 });

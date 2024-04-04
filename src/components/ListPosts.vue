@@ -1,8 +1,13 @@
 <template>
   <div class="list-users">
+    <p>Counts items to show: {{ itemsToShow }}</p>
     <div class="list-users-container">
       <template v-if="users">
-        <PostCard v-for="(user, index) in users" :key="index" :user="user" />
+        <PostCard
+          v-for="(user, index) in itemsToShow"
+          :key="index"
+          :user="users[index]"
+        />
       </template>
       <template v-else> Нет данных. </template>
     </div>
@@ -20,6 +25,23 @@ export default {
   },
   components: {
     PostCard,
+  },
+  computed: {
+    itemsToShow: function () {
+      return this.$store.getters.itemsToShow;
+    },
+  },
+  watch: {
+    itemsToShow: {
+      immediate: true,
+      handler(newVal) {
+        if (newVal) {
+          this.$nextTick(() => {
+            console.log(newVal + "update counter of visible items");
+          });
+        }
+      },
+    },
   },
 };
 </script>
