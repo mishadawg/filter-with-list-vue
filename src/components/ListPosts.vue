@@ -6,7 +6,7 @@
         <PostCard
           v-for="(user, index) in itemsToShow"
           :key="index"
-          :user="users[index]"
+          :user="slicedUserComp[index]"
         />
       </template>
       <template v-else> Нет данных. </template>
@@ -27,10 +27,29 @@ export default {
     PostCard,
   },
   computed: {
+    slicedUserComp: function () {
+      let result = this?.users.slice(
+        this.$store.getters.currentPageInfo.pageStart,
+        this.$store.getters.currentPageInfo.pageStart +
+          this.$store.getters.itemsToShow
+      );
+      return result ? result : null;
+    },
     itemsToShow: function () {
-      return this.$store.getters.itemsToShow < this.users?.length
-        ? this.$store.getters.itemsToShow
-        : this.users?.length;
+      let summ =
+        this.$store.getters.itemsToShow +
+        this.$store.getters.currentPageInfo.pageStart;
+      if (this.$store.getters.itemsToShow < this.users?.length) {
+        if (summ > this.users?.length) {
+          return (
+            this.users?.length - this.$store.getters.currentPageInfo.pageStart
+          );
+        } else {
+          return this.$store.getters.itemsToShow;
+        }
+      } else {
+        return this.users?.length;
+      }
     },
   },
 };

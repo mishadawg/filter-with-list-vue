@@ -15,6 +15,10 @@ export default createStore({
         { value: "games", name: "Games" },
       ],
       _filter: null,
+      _currentPageInfo: {
+        currentPage: 1,
+        pageStart: null,
+      },
     };
   },
   mutations: {
@@ -34,6 +38,9 @@ export default createStore({
     goFilter(state, payload) {
       state._filter = payload;
     },
+    setPage(state, payload) {
+      state._currentPageInfo = payload;
+    },
   },
   actions: {
     getDataFromServer(context) {
@@ -48,5 +55,6 @@ export default createStore({
     categories: (state) => state._categories,
     itemsToShow: (state) => state._itemsToShow,
     filter: (state) => state._filter,
+    currentPageInfo: (state) => state._currentPageInfo,
   },
 });
