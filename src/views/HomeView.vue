@@ -3,6 +3,7 @@
     <Filter />
     <ListPosts :users="listPostsData" />
     <ShowMoreTrigger v-if="itemsToShow < listPostsData?.length" />
+    <Paggination />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import Filter from "@/components/Filter";
 import ListPosts from "@/components/ListPosts";
 import ShowMoreTrigger from "@/components/ShowMoreTrigger";
+import Paggination from "@/components/Paggination";
 
 export default {
   name: "HomeView",
@@ -17,6 +19,7 @@ export default {
     Filter,
     ListPosts,
     ShowMoreTrigger,
+    Paggination,
   },
   methods: {
     getFilterData(data) {
