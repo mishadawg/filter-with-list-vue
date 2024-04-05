@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     categories: function () {
-      return [{ value: "all", name: "All" }, ...this.$store.getters.categories];
+      return [{ value: null, name: "All" }, ...this.$store.getters.categories];
     },
   },
 };
