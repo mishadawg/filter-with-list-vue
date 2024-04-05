@@ -27,6 +27,10 @@
         </option>
       </select>
     </div>
+    <div class="filter-input">
+      <label>Clear</label>
+      <button @click="clearFilters">X</button>
+    </div>
   </div>
 </template>
 <script>
@@ -41,6 +45,13 @@ export default {
     };
   },
   methods: {
+    clearFilters() {
+      if (this.filter.title || this.filter.category) {
+        this.filter.title = "";
+        this.filter.category = null;
+        this.handlerFilter();
+      }
+    },
     handlerFilter() {
       this.$store.commit("goFilter", this.filter);
     },
@@ -53,6 +64,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/assets/vars";
+
 .filter {
   display: flex;
   align-items: center;
@@ -60,14 +73,20 @@ export default {
   flex-wrap: wrap;
   margin: 16px 0px;
   &-input {
-    // var css
-    max-width: 416px;
+    max-width: $stock-block-max-width;
     width: 100%;
     input,
     select {
       width: 100%;
-      // var css
-      min-height: 30px;
+      min-height: $stock-input-min-height;
+    }
+    button,
+    label {
+      display: block;
+    }
+    label {
+      width: 100%;
+      text-align: left;
     }
   }
 }

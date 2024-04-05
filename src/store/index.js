@@ -8,7 +8,6 @@ export default createStore({
     return {
       _loaded: false,
       _data: null,
-      _selected: null,
       _itemsToShow: 6,
       _categories: [
         { value: "sport", name: "Sport" },
@@ -34,7 +33,6 @@ export default createStore({
     },
     goFilter(state, payload) {
       state._filter = payload;
-      console.log(state._filter);
     },
   },
   actions: {

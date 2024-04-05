@@ -17,15 +17,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/assets/vars";
+
 .user-card {
-  // var css
-  max-width: 416px;
+  max-width: $stock-block-max-width;
   width: 100%;
-  border-radius: 6px;
+  border-radius: $stock-block-border-radius;
   text-align: left;
-  border: 1px solid;
-  // var css
-  // border-color: aqua;
+  border: 1px solid black;
   padding: 16px;
   &-title {
     font-size: 18px;
