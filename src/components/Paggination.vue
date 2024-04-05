@@ -9,7 +9,9 @@
       </button>
     </li>
     <li v-for="(page, index) in totalPage" :key="index">
-      <button @click="setPage(page)">{{ page }}</button>
+      <button :disabled="currPage === page" @click="setPage(page)">
+        {{ page }}
+      </button>
     </li>
     <li>
       <button @click="setPage(currPage + 1)" :disabled="currPage === totalPage">
@@ -19,8 +21,11 @@
   </ul>
 </template>
 <script>
+import methodsAndCompsForData from "@/mixins/methodsAndCompsForData";
+
 export default {
   name: "Paggination",
+  mixins: [methodsAndCompsForData],
   data() {
     return {
       currPage: 1,
@@ -33,29 +38,6 @@ export default {
       }
       this.currPage = idx;
     },
-    getFilterData(data) {
-      if (
-        this.$store.getters.filter?.title &&
-        !this.$store.getters.filter?.category
-      ) {
-        return data.filter((el) =>
-          el.title.includes(this.$store.getters.filter?.title)
-        );
-      }
-      if (
-        !this.$store.getters.filter?.title &&
-        this.$store.getters.filter?.category
-      ) {
-        return data.filter(
-          (el) => el.category.value === this.$store.getters.filter?.category
-        );
-      }
-      return data.filter(
-        (el) =>
-          el.title.includes(this.$store.getters.filter?.title) &&
-          el.category.value === this.$store.getters.filter?.category
-      );
-    },
   },
   computed: {
     // filteredRows: function () {
@@ -66,26 +48,11 @@ export default {
     //       })
     //     : this.rows;
     // },
-    filterComp: function () {
-      return (
-        !!this.$store.getters.filter?.category ||
-        !!this.$store.getters.filter?.title
-      );
-    },
-    listPostsData: function () {
-      return !this.filterComp
-        ? this.$store.getters.data
-        : this.getFilterData(this.$store.getters.data);
-    },
-    itemsToShow: function () {
-      return this.$store.getters.itemsToShow;
-    },
     pageStart: function () {
       return (this.currPage - 1) * this.itemsToShow;
     },
     totalPage: function () {
       let result = Math.ceil(this.listPostsData?.length / this.itemsToShow);
-      // ?
       let stockCount = 3;
       return result ? result : stockCount;
     },
