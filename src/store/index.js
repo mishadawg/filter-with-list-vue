@@ -17,7 +17,7 @@ export default createStore({
       _filter: null,
       _currentPageInfo: {
         currentPage: 1,
-        pageStart: null,
+        pageStart: 0,
       },
     };
   },
@@ -37,6 +37,10 @@ export default createStore({
     },
     goFilter(state, payload) {
       state._filter = payload;
+      state._currentPageInfo = {
+        currentPage: 1,
+        pageStart: 0,
+      };
     },
     setPage(state, payload) {
       state._currentPageInfo = payload;

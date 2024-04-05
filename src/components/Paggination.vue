@@ -38,12 +38,15 @@ export default {
       }
       this.currentPage = idx;
       this.$store.commit("setPage", {
-        positionNumber: this.currentPage,
+        currentPage: this.currentPage,
         pageStart: this.pageStart,
       });
     },
   },
   computed: {
+    storedCurrentPage: function () {
+      return this.$store.getters.currentPageInfo.currentPage;
+    },
     pageStart: function () {
       return (this.currentPage - 1) * this.itemsToShow;
     },
@@ -51,6 +54,11 @@ export default {
       let result = Math.ceil(this.listPostsData?.length / this.itemsToShow);
       let stockCount = 3;
       return result ? result : stockCount;
+    },
+  },
+  watch: {
+    storedCurrentPage: function (newVal) {
+      this.currentPage = newVal;
     },
   },
 };
