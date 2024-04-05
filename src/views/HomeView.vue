@@ -2,7 +2,7 @@
   <div class="container">
     <Filter />
     <ListPosts :users="listPostsData" />
-    <ShowMoreTrigger v-if="itemsToShow < listPostsData?.length" />
+    <ShowMoreTrigger v-if="showMoreTriggerHandler" />
     <Paggination />
   </div>
 </template>
@@ -25,6 +25,16 @@ export default {
   },
   mounted: function () {
     this.$store.dispatch("getDataFromServer");
+  },
+  computed: {
+    showMoreTriggerHandler: function () {
+      let summ =
+        this.$store.getters.currentPageInfo.pageStart + this.itemsToShow;
+      if (summ > this.listPostsData?.length) {
+        return false;
+      }
+      return true;
+    },
   },
 };
 </script>
