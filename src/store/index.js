@@ -41,6 +41,7 @@ export default createStore({
         currentPage: 1,
         pageStart: 0,
       };
+      state._itemsToShow = 6;
     },
     setPage(state, payload) {
       state._currentPageInfo = payload;
