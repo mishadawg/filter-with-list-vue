@@ -1,11 +1,8 @@
 <template>
   <div class="list-users">
-    <p class="list-users-count">
-      Counts items to show:
-      {{ itemsToShow < users?.length ? itemsToShow : users?.length }}
-    </p>
+    <p class="list-users-count">Counts items to show: {{ itemsToShow }}</p>
     <div class="list-users-container">
-      <template v-if="users">
+      <template v-if="itemsToShow">
         <PostCard
           v-for="(user, index) in itemsToShow"
           :key="index"
@@ -31,7 +28,9 @@ export default {
   },
   computed: {
     itemsToShow: function () {
-      return this.$store.getters.itemsToShow;
+      return this.$store.getters.itemsToShow < this.users?.length
+        ? this.$store.getters.itemsToShow
+        : this.users?.length;
     },
   },
 };

@@ -2,7 +2,7 @@
   <div class="container">
     <Filter />
     <ListPosts :users="listPostsData" />
-    <ShowMoreTrigger />
+    <ShowMoreTrigger v-if="itemsToShow < listPostsData?.length" />
   </div>
 </template>
 
@@ -54,6 +54,9 @@ export default {
       return !this.filterComp
         ? this.$store.getters.data
         : this.getFilterData(this.$store.getters.data);
+    },
+    itemsToShow: function () {
+      return this.$store.getters.itemsToShow;
     },
   },
   mounted: function () {
