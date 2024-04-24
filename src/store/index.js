@@ -6,7 +6,6 @@ const dataUrl = "https://jsonplaceholder.typicode.com/posts";
 export default createStore({
   state() {
     return {
-      _loaded: false,
       _data: null,
       _itemsToShow: 6,
       _categories: [
@@ -30,7 +29,6 @@ export default createStore({
           ];
         return item;
       });
-      state._loaded = true;
     },
     showMoreItems(state) {
       state._itemsToShow += 3;
@@ -55,7 +53,6 @@ export default createStore({
     },
   },
   getters: {
-    loaded: (state) => state._loaded,
     data: (state) => state._data,
     categories: (state) => state._categories,
     itemsToShow: (state) => state._itemsToShow,
