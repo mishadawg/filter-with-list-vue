@@ -1,24 +1,2 @@
-# filter-with-list
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Тестовый пример работы фильтрации(по тайтлу и по категории) и вывода мок данных,
+есть пагинация и кнопка "Показать еще".
